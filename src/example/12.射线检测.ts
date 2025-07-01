@@ -101,3 +101,18 @@ function render() {
 }
 
 render();
+
+/**
+ * const raycaster = new THREE.Raycaster()
+   const mouse = new THREE.Vector2()
+
+   // 设置鼠标位置（归一化设备坐标）
+   mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+
+   // 设置相机和鼠标点创建射线
+   raycaster.setFromCamera(mouse, camera)
+
+   // 检测 objects 数组中的所有物体
+   const intersects = raycaster.intersectObjects(objects)
+ */

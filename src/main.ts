@@ -22,4 +22,5 @@ import "./style.css";
 // import "./review/02.悬浮平台-小球运动";
 // import "./review/03.悬浮平台-小球运动-优化";
 // import "./__TEST__/01.抽象类";
-import "./review/04.照猫画虎";
+// import "./review/04.照猫画虎";
+import "./review/05.三维坐标点-Vector3";

@@ -40,6 +40,16 @@ class Plantform extends Entity {
     super(mesh, body);
     this.material = material;
   }
+
+  rotateY(angle: number) {
+    this.mesh.rotateY(angle);
+    const q = new THREE.Quaternion().setFromAxisAngle(
+      new THREE.Vector3(0, 1, 0),
+      angle
+    );
+    const cannonQuat = new CANNON.Quaternion(q.x, q.y, q.z, q.w);
+    this.body.quaternion = this.body.quaternion.mult(cannonQuat);
+  }
 }
 
 class Ball extends Entity {
@@ -149,8 +159,7 @@ class Game {
     this.controls.update();
     this.entities.forEach((e) => {
       if (e instanceof Plantform) {
-        e.body
-        e.sync();
+        e.rotateY(0.01);
       }
     });
     this.entities.forEach((e) => e.sync());
