@@ -24,4 +24,5 @@ import "./style.css";
 // import "./__TEST__/01.抽象类";
 // import "./review/04.照猫画虎";
 // import "./review/05.三维坐标点-Vector3";
-import "./review/06.材质";
+// import "./review/06.材质";
+import "./review/07.小人移动"

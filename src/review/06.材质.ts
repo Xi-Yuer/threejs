@@ -22,6 +22,7 @@ function init() {
   // 将环境贴图同时用作全局环境光源和背景，以增强玻璃反射效果
   scene.environment = envMap;
   scene.background = envMap;
+  // scene.background = new THREE.Color(0xffffff);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio); // ✅ 提升渲染性能
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -54,12 +55,12 @@ function init() {
 
 const createGlass = () => {
   const glass = new THREE.Mesh(
-    new THREE.PlaneGeometry(10, 10),
+    new THREE.PlaneGeometry(20, 20),
     new THREE.MeshStandardMaterial({
       color: 0x1e1f33,
       envMap,
       envMapIntensity: 1.5,
-      roughness: 0,
+      roughness: 1,
       opacity: 0.8,
       transparent: true,
       metalness: 0.3,
@@ -68,18 +69,18 @@ const createGlass = () => {
   );
   glass.castShadow = true;
   glass.position.y = 5;
-  glass.rotateX(-Math.PI / 3);
+  glass.rotateX(-Math.PI / 2.5);
 
   return { glass };
 };
 
 const createlight = () => {
-  const light = new THREE.PointLight(0xffffff, 1);
-  const lightHelper = new THREE.PointLightHelper(light, 5);
-  light.position.set(10, 25, 10);
+  const light = new THREE.PointLight(0xffffff, 500);
+  const lightHelper = new THREE.PointLightHelper(light, 1);
+  light.position.set(0, 50, 0);
   light.rotateZ(-Math.PI / 1);
   light.castShadow = true; // ✅ 提升渲染性能
-  light.shadow.mapSize.set(1024, 1024); // 提升阴影质量
+  light.shadow.mapSize.set(2048, 2048); // 提升阴影质量
   return {
     light,
     lightHelper,
@@ -88,9 +89,9 @@ const createlight = () => {
 
 const createPlane = () => {
   const plane = new THREE.Mesh(
-    new THREE.PlaneGeometry(50, 50),
+    new THREE.PlaneGeometry(100, 100),
     new THREE.MeshStandardMaterial({
-      color: 0xffffff,
+      side: THREE.DoubleSide,
     })
   );
   plane.rotateX(-Math.PI / 2);
@@ -105,7 +106,7 @@ function main() {
   const { light, lightHelper } = createlight();
   const { plane } = createPlane();
   light.lookAt(glass.position);
-  scene.add(glass, light, lightHelper, plane);
+  scene.add(glass, light, lightHelper, plane, gridHelper);
 
   function render() {
     controls.update();

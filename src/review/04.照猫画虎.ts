@@ -185,6 +185,13 @@ const platform2 = new Plantform(
   new THREE.Color(0x90caf9)
 );
 
+const q = new THREE.Quaternion().setFromAxisAngle(
+  new THREE.Vector3(0, 1, 0),
+  Math.PI / 2
+)
+
+platform1.mesh.quaternion.copy(q);
+
 const ball1 = new Ball(
   1,
   new THREE.Color(0xff5722),
