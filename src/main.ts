@@ -25,4 +25,5 @@ import "./style.css";
 // import "./review/04.照猫画虎";
 // import "./review/05.三维坐标点-Vector3";
 // import "./review/06.材质";
-import "./review/07.小人移动"
+// import "./review/07.小人移动"
+import "./review/08.小人移动-复习"
